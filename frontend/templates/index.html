@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="{{ session.get('lang', 'es') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ texts['title'] }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div>
+        <img src="{{ url_for('static', filename='img/image.png') }}" alt="Imagen centrada" class="header-img">
+    </div>
+    <div class="container">
+        <!-- Título de la aplicación -->
+        <h1>{{ texts['title'] }}</h1>
+
+        <!-- Verificamos si el usuario está logueado, si no lo está, mostramos el formulario de login -->
+        {% if 'user_id' not in session %}
+            <h2>{{ texts['login'] }}</h2>
+            <form action="{{ url_for('login') }}" method="POST">
+                <input type="text" name="username" placeholder="{{ texts['username'] }}" required>
+                <input type="password" name="password" placeholder="{{ texts['password'] }}" required>
+                <button type="submit">{{ texts['login'] }}</button>
+            </form>
+        {% else %}
+            <!-- Botones de navegación de tareas con íconos -->
+            <div class="task-buttons">
+                <div class="task-button" onclick="showPendingTasks()">
+                    <img src="{{ url_for('static', filename='icons/pending-icon.png') }}" 
+                         alt="{{ texts['pending_tasks'] }}">
+                </div>
+                <div class="task-button" onclick="showCompletedTasks()">
+                    <img src="{{ url_for('static', filename='icons/completed-icon.png') }}" 
+                         alt="{{ texts['completed_tasks'] }}">
+                </div>
+            </div>
+
+            <!-- Sección de tareas pendientes -->
+            <div id="pending-section">
+                <h2>{{ texts['pending_tasks'] }}</h2>
+                <div id="task-list-pending">
+                    <!-- Las tareas pendientes se mostrarán aquí -->
+                </div>
+            </div>
+
+            <!-- Sección de tareas completadas -->
+            <div id="completed-section" style="display: none;">
+                <h2>{{ texts['completed_tasks'] }}</h2>
+                <div id="task-list-completed">
+                    <!-- Las tareas completadas se mostrarán aquí -->
+                </div>
+            </div>
+
+            <!-- Formulario para agregar una nueva tarea -->
+            <form id="task-form">
+                <input type="text" id="task-input" placeholder="{{ texts['add_task'] }}..." required>
+                <input type="text" id="tags-input" placeholder="{{ texts['tags_placeholder'] }}" />
+                <button type="submit">{{ texts['add_task'] }}</button>
+            </form>
+
+            <!-- Filtro por etiquetas -->
+            <div id="filter">
+                <input type="text" id="tag-filter" placeholder="{{ texts['filter_by_tag'] }}" />
+                <button onclick="filterTasksByTag()">{{ texts['filter'] }}</button>
+            </div>
+            <div>
+                <button id="toggle-archived-btn" onclick="toggleArchivedTasks()">Mostrar Archivadas</button>
+
+                <div id="archived-section" style="display: none;">
+                    <h2>Tareas Archivadas</h2>
+                    <div id="task-list-archived"></div>
+                </div>
+            </div>
+            <!-- Botón de cerrar sesión -->
+            <div class="logout-container">
+                <a href="{{ url_for('logout') }}" class="logout-btn">{{ texts['logout'] }}</a>
+            </div>
+        {% endif %}
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

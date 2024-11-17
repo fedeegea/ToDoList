@@ -1,0 +1,306 @@
+ /* Estilos globales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7fc;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh; /* Cambiado a min-height para permitir crecimiento */
+    margin: 0;
+    text-align: center;
+}
+
+
+/* Imagen centrada en la parte superior */
+.header-img {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.header-img:hover {
+    transform: scale(1.3);
+    filter: brightness(1.1);
+}
+
+/* Contenedor de contenido */
+.container {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 60px;
+}
+
+/* Resto del código */
+.language-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.language-buttons a {
+    text-decoration: none;
+    color: #555;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+ 
+.language-buttons a.active {
+    color: #f09e3a;
+    font-weight: bold;
+}
+.language-buttons a:hover {
+    color: #f09e3a;
+    transform: scale(1.09);
+}
+
+h1 {
+    font-size: 35px;
+    color: #444;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+h1:hover {
+    color: #f09e3a;
+    transform: scale(1.1);
+}
+
+h2 {
+    font-size: 25px;
+    color: #444;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+h2:hover {
+    color: #f09e3a;
+    transform: scale(1.1);
+}
+
+/* Otros estilos (sin cambios) */
+
+/* Botones de tareas */
+.task-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.task-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 12px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.task-button img {
+    width: 28px;
+    height: 28px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.task-button:hover {
+    transform: scale(1.3);
+    filter: brightness(1.3);
+}
+
+.task-button.active img {
+    filter: brightness(1.3);
+}
+
+.task-button img:active {
+    transform: scale(0.9);
+}
+
+/* Formulario */
+form {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    transition: border 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border: 1px solid #f09e3a;
+    outline: none;
+}
+
+button {
+    padding: 12px 24px;
+    background-color: #f09e3a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #d6841f;
+    transform: scale(1.05);
+}
+
+/* Sección de tareas */
+#pending-section, #completed-section {
+    display: block;
+}
+
+/* Tareas */
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin: 12px 0;
+    background-color: #f0f0f088;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.task-item:hover {
+    background-color: #e9e9e9;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.task-item input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.task-item input[type="checkbox"]:checked {
+    background-color: #f09e3a;
+    border: 2px solid #f09e3a;
+}
+
+.task-item input[type="checkbox"]:hover {
+    background-color: #b8792c;
+}
+
+/* Botones de completar y eliminar */
+button.complete-btn, button.delete-btn {
+    background-color: #d43734;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button.complete-btn {
+    color: #f09e3a;
+    font-size: 16px;
+}
+
+/* Estilo específico para el botón de eliminar */
+.delete-btn {
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Efectos de hover y active para el botón de eliminar */
+.delete-btn:hover {
+    background-color: #8e1412; 
+    transform: scale(1.05);
+    color: white;
+}
+
+.delete-btn:active {
+    transform: scale(0.98);
+}
+/* Estilo para la imagen centrada en la parte superior */
+.header-img {
+    display: block;
+    margin: 20px auto; /* Centra la imagen horizontalmente y agrega margen superior */
+    max-width: 100%; /* Ajusta el tamaño de la imagen al tamaño del contenedor */
+    height: auto; /* Mantiene la relación de aspecto de la imagen */
+}
+
+/* Estilo para el botón de cerrar sesión en la parte inferior */
+.logout-container {
+    margin-top: 40px; /* Ajusta el valor según el espacio que necesites */
+    text-align: center; /* Centra el botón horizontalmente */
+    padding-bottom: 20px; /* Espacio extra en la parte inferior */
+}
+
+.logout-btn {
+    font-size: 16px;
+    padding: 12px 24px; /* Tamaño de padding más grande para mejor presencia */
+    background-color: #fffcfc;
+    color: #f09e3a;
+    border: 2px solid #f09e3a; /* Borde sutil para resaltar el botón */
+    border-radius: 8px; /* Bordes más redondeados para un diseño moderno */
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para profundidad */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #f09e3a;
+    color: #ffffff;
+    transform: translateY(-2px) scale(1.05); /* Movimiento hacia arriba y escalado para efecto de "pop" */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más intensa en hover */
+}
+
+.archive-btn {
+    background-color: transparent; /* Fondo transparente para resaltar solo el icono */
+    border: 2px solid #f09e3a;
+    cursor: pointer; /* Manito de clic */
+    padding: 5px; /* Espaciado interno */
+    border-radius: 5px; /* Botón redondo */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.archive-btn:hover {
+    background-color: #e0e0e0; /* Cambia el color de fondo al pasar el mouse */
+    transform: translateY(-2px) scale(1.05); /* Movimiento hacia arriba y escalado para efecto de "pop" */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más intensa en hover */
+}
+
+
+.archive-btn img {
+    width: 20px; /* Tamaño del icono */
+    height: 20px;
+    display: inline-block;
+}
+
+#archived-section {
+    display: none; /* Para empezar oculto */
+}

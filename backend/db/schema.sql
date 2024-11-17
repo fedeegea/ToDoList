@@ -1,0 +1,44 @@
+CREATE DATABASE IF NOT EXISTS todo_db;
+
+USE todo_db;
+
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+);
+
+INSERT INTO users (username, password) 
+VALUES ('user', '1234')
+ON DUPLICATE KEY UPDATE username='user';
+
+CREATE TABLE IF NOT EXISTS todos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    task VARCHAR(255) NOT NULL,
+    completed BOOLEAN NOT NULL DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS tags (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) UNIQUE NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS task_tags (
+    task_id INT,
+    tag_id INT,
+    FOREIGN KEY (task_id) REFERENCES todos(id),
+    FOREIGN KEY (tag_id) REFERENCES tags(id),
+    PRIMARY KEY (task_id, tag_id)
+);
+
+ALTER TABLE task_tags
+DROP FOREIGN KEY task_tags_ibfk_1;
+
+ALTER TABLE task_tags
+ADD CONSTRAINT task_tags_ibfk_1
+FOREIGN KEY (task_id) REFERENCES todos(id)
+ON DELETE CASCADE;
+
+ALTER TABLE todos ADD archived BOOLEAN DEFAULT FALSE;
